@@ -11,7 +11,11 @@ GameObject:
   - component: {fileID: 3544091258917011633}
   - component: {fileID: 34456122640444887}
   - component: {fileID: 4035976222475343239}
-  m_Layer: 0
+  - component: {fileID: 587109098429408613}
+  - component: {fileID: 7803780881960594042}
+  - component: {fileID: 5597132228804146377}
+  - component: {fileID: 4370244974156808450}
+  m_Layer: 9
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,3 +96,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad00442efcba10c41804d25474221c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &587109098429408613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866849445485150763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d340451b47c34cf49a89f465ec59dd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  score: 150
+  minTimeBetweenShot: 0.2
+  maxTimeBetweenShot: 3
+  projectile: {fileID: 9147841123643714140, guid: 1b86f47b28ef6714fa47a56ef835ed1f,
+    type: 3}
+  projectileSpeed: 10
+  DestorySound: {fileID: 8300000, guid: 9e0c23b8714929a45ab8b9dc7b8ecbbe, type: 3}
+  DestorySoundVolume: 1
+  ShootingSound: {fileID: 8300000, guid: f737787549a46464eb7986731886febf, type: 3}
+  ShootingSoundVolume: 0.75
+  DestoryVFX: {fileID: 768466994788886313, guid: 918c4c2a4c07077448b699af1f76bdf0,
+    type: 3}
+  DurationOfExplosion: 1
+--- !u!61 &7803780881960594042
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866849445485150763}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.82, y: 0.84}
+    newSize: {x: 0.82, y: 0.84}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.82, y: 0.84}
+  m_EdgeRadius: 0
+--- !u!114 &5597132228804146377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866849445485150763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5c595ac92ff374a855431b1d6e8fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 200
+--- !u!50 &4370244974156808450
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866849445485150763}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

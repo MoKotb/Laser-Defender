@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField]
     float moveSpeed = 10f;
     [SerializeField]
     float padding = 1f;
     [SerializeField]
+    int health = 200;
+
+    [Header("Projectile")]
+    [SerializeField]
     GameObject laserPrefab;
     [SerializeField]
     float projectileSpeed = 10f;
     [SerializeField]
-    float projectileFiringperiod = 0.1f;
+    float projectileFiringPeriod = 0.1f;
+
+    [Header("Sound")]
+    [SerializeField]
+    AudioClip DestorySound;
+    [SerializeField]
+    [Range(0, 1)]
+    float DestorySoundVolume = 0.75f;
+    [SerializeField]
+    AudioClip ShootingSound;
+    [SerializeField]
+    [Range(0, 1)]
+    float ShootingSoundVolume = 0.75f;
 
     private float xMin, xMax, yMin, yMax;
     private Coroutine firingCoroutine;
@@ -55,7 +72,8 @@ public class Player : MonoBehaviour
         {
             GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
-            yield return new WaitForSeconds(projectileFiringperiod);
+            AudioSource.PlayClipAtPoint(ShootingSound, Camera.main.transform.position, ShootingSoundVolume);
+            yield return new WaitForSeconds(projectileFiringPeriod);
         }
     }
 
@@ -69,5 +87,38 @@ public class Player : MonoBehaviour
         {
             StopCoroutine(firingCoroutine);
         }
+    }
+
+    public int GetHealth()
+    {
+        if (health <= 0)
+        {
+            return 0;
+        }
+        return health;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
+        ProcessHit(damageDealer);
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        FindObjectOfType<Level>().LoadGameOver();
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(DestorySound, Camera.main.transform.position, DestorySoundVolume);
     }
 }
